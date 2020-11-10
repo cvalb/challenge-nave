@@ -1,6 +1,6 @@
 # nave.rs Front-end challenge
 
-
+Read this in other language: [English](https://github.com/cvalb/challenge-nave/blob/main/README.md), [Portuguese](https://github.com/cvalb/challenge-nave/blob/main/README.pt.md)
 
 ## Description
 
@@ -11,7 +11,7 @@ This is also my first project using React and Sass.
 
 The challenge's objective was to create a responsive single page application using any framework/library or pure JavaScript, integrating their API.
 
-## 0.1.0 -
+## 0.1.0
 
 Fully functional.
 

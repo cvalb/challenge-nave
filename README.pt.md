@@ -1,6 +1,6 @@
 # Desafio Front-end nave.rs
 
-
+Read this in other language: [English](https://github.com/cvalb/challenge-nave/blob/main/README.md), [Portuguese](https://github.com/cvalb/challenge-nave/blob/main/README.pt.md)
 
 ## Descrição
 
