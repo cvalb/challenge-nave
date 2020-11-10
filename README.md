@@ -19,4 +19,4 @@ Fully functional.
 - The employee modal isn't using the show request, as requested by the company. Instead, it uses the clicked employee as an object set to a state;
 - When deleting an employee, could not reload the main list. Tried to set state variables to do so;
 - Each modal should be a component;
-- Refactor functions to be called;
+- Refactor functions to be called from outside;
