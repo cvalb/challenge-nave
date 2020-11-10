@@ -1,0 +1,65 @@
+$defaultTextColor: #212121;
+$defaultBlack: #212121;
+$defaultButtonBackground: #212121;
+$white: #FFFFFF;
+
+$defaultFont: 'Montserrat', sans-serif;
+$bold: 600;
+
+%defaultBorder{
+    border: 1px solid #424242;
+}
+
+%photo {
+    object-fit: cover;
+}
+
+%inputText{
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    padding: .75em;
+}
+
+%button{
+    background-color: $defaultButtonBackground;
+    color: $white;
+    font-family: $defaultFont;
+    font-weight: $bold;
+    width: 13.25em;
+    height: 3em;
+    padding: 0;
+}
+
+%centerTag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%modal {
+    @extend %centerTag;
+    display: none;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    background-color: $white;
+
+    h3 {
+        font-weight: $bold;
+        color: #000000;
+        font-size: 24px;
+        line-height: 1.5em;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.5em;
+    }
+
+    span{
+        font-weight: $bold;
+    }
+}

@@ -1,0 +1,30 @@
+.login-box {
+    @extend %centerTag;
+    @extend %defaultBorder;
+    padding: 2.5em 2em;
+
+    @media screen and (min-width: 500px) {
+        width: 448px;
+    }
+
+    img, a {
+        display: block;
+        margin: 0 auto 2.5em;
+    }
+
+    input {
+        @extend %inputText;
+        @extend %defaultBorder;
+        width: 100%;
+        margin: 0 0 2.75em;
+    }
+
+    .login-button {
+        @extend %button;
+        width: 100%;
+        margin-bottom: 0;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

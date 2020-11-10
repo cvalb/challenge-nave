@@ -1,0 +1,125 @@
+.modal-photo {
+    @extend %photo;
+    display: inline;
+    height: auto;
+    width: auto;
+    height: 503px;
+    max-width: 503px;
+    width: 100%;
+
+    @media screen and (min-width: 1006px) {
+        max-width: 50%;
+    }
+}
+
+.transparent {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,50%);
+    z-index: 1;
+}
+
+.modal {
+    @extend %modal;
+    display: none;
+    overflow: hidden;
+    width: 95%;
+    padding: 2em;
+
+    .button, .button-negative {
+        margin: 2.5em auto 0;
+    }
+
+    @media screen and (min-width: 592px) {
+        display: none;
+        width: 592px;
+
+        .button, .button-negative {
+            display: inline-block;
+            margin-left: 1em;
+        }
+    }
+
+    p {
+        margin-top: 1.5em;
+    }
+}
+
+@media screen and (min-width: 592px) {
+    .button-wrap {
+        float: right;
+    }
+}
+
+.modal-naver {
+    @extend %modal;
+    display: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 95%;
+    width: 95%;
+    max-width: 503px;
+
+    @media screen and (min-width: 1006px) {
+        overflow-y: hidden;
+        height: 503px;
+        max-width: 1006px;
+        width: 100%;
+    }
+
+    &::-webkit-scrollbar{
+        width: .25em;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: $defaultBlack;
+    }
+}
+
+
+
+.modal-text {
+    display: inline-block;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+    padding: 2em;
+    margin: 0;
+
+    h3{
+        margin-bottom: 0.5em;
+    }
+
+    span {
+        display: inline-block;
+        margin: 1.5em 0 0.5em;
+    }
+
+    .icon-wrap {
+        margin-top: 2em;
+        bottom: 2em;
+    }
+
+    @media screen and (min-width: 1006px) {
+        max-width: 40%;
+        height: 100%;
+        
+        .icon-wrap {
+            position: absolute;
+            bottom: 2em;
+        }
+    }
+}
+
+
+.x-icon {
+    position: absolute;
+    top: 1.5em;
+    right: 1.5em;
+    cursor: pointer;
+}

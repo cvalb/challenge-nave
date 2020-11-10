@@ -1,0 +1,67 @@
+.navers-title {
+    display: inline-block;
+    font-size: 40px;
+    line-height: 1.2em;
+    font-weight: $bold;
+    vertical-align: top;
+}
+
+.wrapper {
+    position: relative;
+    overflow: auto;
+    margin: 0 2em;
+
+    .button {
+        @extend %defaultBorder;
+        display: block;
+    
+        @media screen and (min-width: 500px) {
+            display: inline-block;
+            position: absolute; 
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
+.default-box {
+    margin: 2.5em 0;
+}
+
+.photo {
+    @extend %photo;
+    height: 280px;
+    width: 280px;
+}
+
+.navers ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: auto;
+    margin: auto;
+    padding: 1em;
+}
+
+.navers-card {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin: 1em;
+
+    h4 {
+        margin-top: 1em;
+        line-height: 1.2em;
+        font-weight: $bold;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
+}
+
+.icon {
+    margin-right: 0.75em;
+    vertical-align: bottom;
+    cursor: pointer;
+}

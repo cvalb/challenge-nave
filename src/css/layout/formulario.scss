@@ -1,0 +1,44 @@
+.form-naver {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    max-width: 660px;
+    margin: 0 auto;
+
+    input {
+        @extend %defaultBorder;
+        @extend %inputText;
+        margin: 0 0 2.5em;
+        width: 280px;
+    }
+    
+    fieldset {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 1em;
+    }
+
+    .form-button {
+        @extend %button;
+        display: block;
+        margin: 0 0 0 auto;
+    }
+}
+
+
+.form-title {
+    font-family: $defaultFont;
+    font-weight: $bold;
+    font-size: 24px;
+    max-width: 590px;
+    margin: 0 1.5em 1.25em;
+
+    @media screen and (min-width: 660px) {
+        margin: 0 auto 1.25em;
+    }
+
+    span {
+        margin-left: 1em;
+    }
+}

@@ -1,0 +1,345 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.button, .button-negative, .login-box, .login-box input, .wrapper .button, .form-naver input {
+  border: 1px solid #424242; }
+
+.photo, .modal-photo {
+  object-fit: cover; }
+
+.login-box input, .form-naver input {
+  display: block;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: .75em; }
+
+.button, .login-box .login-button, .form-naver .form-button {
+  background-color: #212121;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  width: 13.25em;
+  height: 3em;
+  padding: 0; }
+
+.modal, .modal-naver, .login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.modal, .modal-naver {
+  display: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #FFFFFF; }
+  .modal h3, .modal-naver h3 {
+    font-weight: 600;
+    color: #000000;
+    font-size: 24px;
+    line-height: 1.5em; }
+  .modal p, .modal-naver p {
+    font-size: 16px;
+    line-height: 1.5em; }
+  .modal span, .modal-naver span {
+    font-weight: 600; }
+
+/* Geral */
+body {
+  background-color: #FFFFFF;
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  line-height: 1.5em;
+  scrollbar-width: thin;
+  scrollbar-color: #212121; }
+  body::-webkit-scrollbar {
+    width: .5em; }
+  body::-webkit-scrollbar-thumb {
+    background-color: #212121; }
+
+a {
+  color: #212121;
+  text-decoration: none; }
+
+img {
+  vertical-align: top; }
+
+label {
+  font-size: 0.85em;
+  line-height: 1.2em;
+  font-weight: 600; }
+
+header {
+  position: relative;
+  margin: 0 2em 1.5em;
+  padding-top: 1.5em; }
+  header a {
+    display: inline-block;
+    font-size: 0.85em;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600; }
+  header span {
+    position: absolute;
+    top: 2em;
+    right: 0; }
+  header img {
+    height: 2.75em; }
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto; }
+
+.button:hover {
+  cursor: pointer; }
+
+.button-negative {
+  background-color: #FFFFFF;
+  color: #212121;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  width: 13.25em;
+  height: 3em;
+  padding: 0; }
+  .button-negative:hover {
+    cursor: pointer; }
+
+/* Login */
+.login-box {
+  padding: 2.5em 2em; }
+  @media screen and (min-width: 500px) {
+    .login-box {
+      width: 448px; } }
+  .login-box img, .login-box a {
+    display: block;
+    margin: 0 auto 2.5em; }
+  .login-box input {
+    width: 100%;
+    margin: 0 0 2.75em; }
+  .login-box .login-button {
+    width: 100%;
+    margin-bottom: 0; }
+    .login-box .login-button:hover {
+      cursor: pointer; }
+
+/* Navers */
+.navers-title {
+  display: inline-block;
+  font-size: 40px;
+  line-height: 1.2em;
+  font-weight: 600;
+  vertical-align: top; }
+
+.wrapper {
+  position: relative;
+  overflow: auto;
+  margin: 0 2em; }
+  .wrapper .button {
+    display: block; }
+    @media screen and (min-width: 500px) {
+      .wrapper .button {
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        right: 0; } }
+
+.default-box {
+  margin: 2.5em 0; }
+
+.photo {
+  height: 280px;
+  width: 280px; }
+
+.navers ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+  margin: auto;
+  padding: 1em; }
+
+.navers-card {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  margin: 1em; }
+  .navers-card h4 {
+    margin-top: 1em;
+    line-height: 1.2em;
+    font-weight: 600; }
+  .navers-card p {
+    margin-bottom: 1em; }
+
+.icon {
+  margin-right: 0.75em;
+  vertical-align: bottom;
+  cursor: pointer; }
+
+/* Formulario */
+.form-naver {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  max-width: 660px;
+  margin: 0 auto; }
+  .form-naver input {
+    margin: 0 0 2.5em;
+    width: 280px; }
+  .form-naver fieldset {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 1em; }
+  .form-naver .form-button {
+    display: block;
+    margin: 0 0 0 auto; }
+
+.form-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  max-width: 590px;
+  margin: 0 1.5em 1.25em; }
+  @media screen and (min-width: 660px) {
+    .form-title {
+      margin: 0 auto 1.25em; } }
+  .form-title span {
+    margin-left: 1em; }
+
+/* Modais */
+.modal-photo {
+  display: inline;
+  height: auto;
+  width: auto;
+  height: 503px;
+  max-width: 503px;
+  width: 100%; }
+  @media screen and (min-width: 1006px) {
+    .modal-photo {
+      max-width: 50%; } }
+
+.transparent {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1; }
+
+.modal {
+  display: none;
+  overflow: hidden;
+  width: 95%;
+  padding: 2em; }
+  .modal .button, .modal .button-negative {
+    margin: 2.5em auto 0; }
+  @media screen and (min-width: 592px) {
+    .modal {
+      display: none;
+      width: 592px; }
+      .modal .button, .modal .button-negative {
+        display: inline-block;
+        margin-left: 1em; } }
+  .modal p {
+    margin-top: 1.5em; }
+
+@media screen and (min-width: 592px) {
+  .button-wrap {
+    float: right; } }
+.modal-naver {
+  display: none;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 95%;
+  width: 95%;
+  max-width: 503px; }
+  @media screen and (min-width: 1006px) {
+    .modal-naver {
+      overflow-y: hidden;
+      height: 503px;
+      max-width: 1006px;
+      width: 100%; } }
+  .modal-naver::-webkit-scrollbar {
+    width: .25em; }
+  .modal-naver::-webkit-scrollbar-thumb {
+    background-color: #212121; }
+
+.modal-text {
+  display: inline-block;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: relative;
+  padding: 2em;
+  margin: 0; }
+  .modal-text h3 {
+    margin-bottom: 0.5em; }
+  .modal-text span {
+    display: inline-block;
+    margin: 1.5em 0 0.5em; }
+  .modal-text .icon-wrap {
+    margin-top: 2em;
+    bottom: 2em; }
+  @media screen and (min-width: 1006px) {
+    .modal-text {
+      max-width: 40%;
+      height: 100%; }
+      .modal-text .icon-wrap {
+        position: absolute;
+        bottom: 2em; } }
+
+.x-icon {
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+  cursor: pointer; }
+
+/*# sourceMappingURL=estilos.css.map */

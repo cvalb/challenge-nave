@@ -1,0 +1,84 @@
+body {
+    background-color: $white;
+    color: $defaultTextColor;
+    font-family: $defaultFont;
+    font-style: normal;
+    line-height: 1.5em;
+    scrollbar-width: thin;
+    scrollbar-color: $defaultBlack;
+
+    &::-webkit-scrollbar{
+        width: .5em;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: $defaultBlack;
+    }
+}
+
+a {
+    color: $defaultTextColor;
+    text-decoration: none;
+}
+
+img {
+    vertical-align: top;
+}
+  
+label{
+    font-size: 0.85em;
+    line-height: 1.2em;
+    font-weight: $bold;
+}
+
+header {
+    position: relative;
+    margin: 0 2em 1.5em;
+    padding-top: 1.5em;
+
+    a {
+        display: inline-block;
+        font-size: 0.85em;
+        font-family: $defaultFont;
+        font-weight: $bold;
+    }
+
+    span {
+        position: absolute;
+        top: 2em;
+        right: 0;
+    }
+
+    img {
+        height: 2.75em;
+    }
+}
+
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+.button{
+    @extend %button;
+    @extend %defaultBorder;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.button-negative{
+    @extend %defaultBorder;
+    background-color: $white;
+    color: $defaultBlack;
+    font-family: $defaultFont;
+    font-weight: $bold;
+    width: 13.25em;
+    height: 3em;
+    padding: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
