@@ -16,7 +16,8 @@ Completamente funcional.
 
 ### A melhorar
 
-- O modal do usuário cadastrado não está utilizando o request show, como pedido pelo desafio. Ao invés disso, o usuário é passado como objeto a uma variável de estado. Isso foi feito como solução para recarregar o modal.
-- Quando um usuário é deletado, não pude recarregar a lista. Tentei utilizar variáveis de estado. Resolvi seguir o projeto;
+- O modal do usuário cadastrado não está utilizando o request show, como pedido pelo desafio;
+  - Notei que, ao invés de usar o show request, passar o objeto como um estado iria poupar uma requisição da API, tornando o projeto mais escalável.
+- Quando um usuário é deletado, não pude recarregar a lista. Tentei utilizar variáveis de estado;
 - Cada modal deveria ser um componente;
-- Refatorar funções para serem chamadas de fora da página;
+- Refatorar funções para serem chamadas de fora da página, tornando o código mais legível;
