@@ -4,7 +4,7 @@ Read this in other language: [English](https://github.com/cvalb/challenge-nave/b
 
 ## Descrição
 
-Este projeto é um desafio da [nave.rs](https://nave.rs/)
+Este projeto é um desafio da [nave.rs](https://nave.rs/). Também é meu primeiro projeto utilizando React e Sass.
 
 ## Objetivo
 
