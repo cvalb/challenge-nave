@@ -15,8 +15,10 @@ The challenge's objective was to create a responsive single page application usi
 
 Fully functional.
 
-### To improve
-- The employee modal isn't using the show request, as requested by the company. Instead, it uses the clicked employee as an object set to a state;
+### Next steps
+
+- The employee modal isn't using the show request, as requested by the challenge;
+  - I found out that instead of using the show request, setting the employee object to a state would save requisition to the API, making it more scalable;
 - When deleting an employee, could not reload the main list. Tried to set state variables to do so;
 - Each modal should be a component;
-- Refactor functions to be called from outside;
+- Refactor functions to be called from outside, making the code more legible;
