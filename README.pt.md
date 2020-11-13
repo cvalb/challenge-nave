@@ -16,7 +16,7 @@ Este projeto é um desafio da [nave.rs](https://nave.rs/). Também é meu primei
 
 O objetivo do desafio foi criar uma aplicação responsiva de página única utilizando qualquer framework/biblioteca ou JavaScript puro, integrando com a API deles.
 
-## 0.1.0 -
+## 0.1.0
 
 Completamente funcional.
 
