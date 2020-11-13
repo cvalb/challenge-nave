@@ -4,7 +4,7 @@ Read this in other language: [English](https://github.com/cvalb/challenge-nave/b
 
 ## Description
 
-This project is a challenge created by [nave.rs](https://nave.rs/). This is also my first project using React and Sass.
+This project is a challenge created by [nave.rs](https://nave.rs/).This is also my first project using React and Sass.
 
 ## Instalation
 
@@ -27,3 +27,9 @@ Fully functional.
 - When deleting an employee, could not reload the main list. Tried to set state variables to do so;
 - Each modal should be a component;
 - Refactor functions to be called from outside, making the code more legible;
+
+### Fixed
+
+- 12/11/2020
+  - List now reloading after deleting an employee by adjusting useEffect;
+  - Refactor funcions variables;

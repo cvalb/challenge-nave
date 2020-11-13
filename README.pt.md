@@ -27,3 +27,9 @@ Completamente funcional.
 - Quando um usuário é deletado, não pude recarregar a lista. Tentei utilizar variáveis de estado;
 - Cada modal deveria ser um componente;
 - Refatorar funções para serem chamadas de fora da página, tornando o código mais legível;
+
+### Corrigido
+
+- 12/11/2020
+  - A lista está recarregando agora que arrumei o hook useEffect em NaversLista.js;
+  - Refatorei as variáveis das funções;

@@ -8,6 +8,8 @@ import logotipo from '../img/logo.svg';
 
 const Home = () => {
     const [log, setLogout] = useState("");
+
+    
     if (!isAuthenticated()) {
         return <Redirect to="/login" />;
     }
