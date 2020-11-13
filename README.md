@@ -32,4 +32,4 @@ Fully functional.
 
 - 12/11/2020
   - List now reloading after deleting an employee by adjusting useEffect;
-  - Refactor funcions variables;
+  - Refactor functions variables;
