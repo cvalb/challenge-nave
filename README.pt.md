@@ -8,7 +8,7 @@ Este projeto é um desafio da [nave.rs](https://nave.rs/). Também é meu primei
 
 ## Instalation
 
-1. Instalar as dependencias do node
+1. Instalar as dependências do node
 
         npm install
 
@@ -31,5 +31,5 @@ Completamente funcional.
 ### Corrigido
 
 - 12/11/2020
-  - A lista está recarregando agora que arrumei o hook useEffect em NaversLista.js;
+  - A lista está recarregando agora que arrumei o hook useEffect em NaversList.js;
   - Refatorei as variáveis das funções;

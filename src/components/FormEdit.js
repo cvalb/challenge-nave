@@ -47,11 +47,11 @@ const FormEdit = () => {
         const admissionSend = requestDate(admission);
         const birthdateSend = requestDate(birthdate);
     
-        const h = new Headers();
+        let h = new Headers();
         h.append("Accept", "application/json");
         h.append("Authorization", "Bearer " + token);
 
-        const requestBody = new FormData();
+        let requestBody = new FormData();
         requestBody.append("job_role", jobRole);
         requestBody.append("admission_date", admissionSend);
         requestBody.append("birthdate", birthdateSend);

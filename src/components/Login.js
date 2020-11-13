@@ -19,10 +19,10 @@ const Login = () => {
         const password = String(formPassword);
         const uri = "https://navedex-api.herokuapp.com/v1/users/login";
       
-        let h = new Headers();
+        const h = new Headers();
         h.append("Accept", "application/json");
         
-        let requestBody = new FormData();
+        const requestBody = new FormData();
         requestBody.append("email", email);
         requestBody.append("password", password);
         
