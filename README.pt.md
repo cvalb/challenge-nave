@@ -6,6 +6,12 @@ Read this in other language: [English](https://github.com/cvalb/challenge-nave/b
 
 Este projeto é um desafio da [nave.rs](https://nave.rs/). Também é meu primeiro projeto utilizando React e Sass.
 
+## Instalation
+
+1. Instalar as dependencias do node
+
+        npm install
+
 ## Objetivo
 
 O objetivo do desafio foi criar uma aplicação responsiva de página única utilizando qualquer framework/biblioteca ou JavaScript puro, integrando com a API deles.
@@ -14,7 +20,7 @@ O objetivo do desafio foi criar uma aplicação responsiva de página única uti
 
 Completamente funcional.
 
-### A melhorar
+### Próximos passos
 
 - O modal do usuário cadastrado não está utilizando o request show, como pedido pelo desafio;
   - Notei que, ao invés de usar o show request, passar o objeto como um estado iria poupar uma requisição da API, tornando o projeto mais escalável.

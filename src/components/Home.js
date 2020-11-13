@@ -7,7 +7,7 @@ import FormEdit from './FormEdit';
 import logotipo from '../img/logo.svg';
 
 const Home = () => {
-    let [log, setLogout] = useState("");
+    const [log, setLogout] = useState("");
     if (!isAuthenticated()) {
         return <Redirect to="/login" />;
     }

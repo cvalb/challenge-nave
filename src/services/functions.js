@@ -1,7 +1,7 @@
 
 export const changeDisplay = (modalReceived, display) => {
-    let transparentLayer = document.getElementById("transparent");
-    let modal = document.getElementById(modalReceived);
+    const transparentLayer = document.getElementById("transparent");
+    const modal = document.getElementById(modalReceived);
 
     transparentLayer.style.display = display;
     modal.style.display = display;
@@ -22,11 +22,11 @@ export function requestDate(value){
 }
 
 export function calcYears(unformattedDate){
-    let today = new Date();
-    let todayYear = today.getFullYear();
+    const today = new Date();
+    const todayYear = today.getFullYear();
 
-    let date = new Date(unformattedDate);
-    let dateYear = date.getFullYear();
+    const date = new Date(unformattedDate);
+    const dateYear = date.getFullYear();
 
     let years = todayYear - dateYear;
     years = parseInt(years);

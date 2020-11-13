@@ -6,18 +6,18 @@ import logotipo from '../img/logo.svg';
 import iconExit from '../img/sair.svg';
 
 const Login = () => {
-    let [email, setEmail] = useState("");
-    let [password, setPassword] = useState("");
-    let [login, setLogin] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [login, setLogin] = useState("");
 
     if (isAuthenticated()) {
         return <Redirect to="/navers" />;
     }
 
     const sendForm = async (formEmail, formPassword) => {
-        let email = String(formEmail);
-        let password = String(formPassword);
-        let uri = "https://navedex-api.herokuapp.com/v1/users/login";
+        const email = String(formEmail);
+        const password = String(formPassword);
+        const uri = "https://navedex-api.herokuapp.com/v1/users/login";
       
         let h = new Headers();
         h.append("Accept", "application/json");

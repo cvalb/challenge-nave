@@ -7,6 +7,12 @@ Read this in other language: [English](https://github.com/cvalb/challenge-nave/b
 This project is a challenge created by [nave.rs](https://nave.rs/).
 This is also my first project using React and Sass.
 
+## Instalation
+
+1. Install Node dependencies
+
+        npm install
+
 ## Objective
 
 The challenge's objective was to create a responsive single page application using any framework/library or pure JavaScript, integrating their API.

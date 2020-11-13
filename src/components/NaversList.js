@@ -10,13 +10,13 @@ import hanSolo from '../img/wide.jpg'; // !!!!
 
 
 const NaversList = () => {
-    let [showNaver, setNaver] = useState(new Naver());
-    let [arrayNavers, setArrayNavers] = useState("");
+    const [showNaver, setNaver] = useState(new Naver());
+    const [arrayNavers, setArrayNavers] = useState("");
 
     useEffect(() => {
         const getNavers = async () => {
-            let token = getToken();
-            let uri = "https://navedex-api.herokuapp.com/v1/navers";
+            const token = getToken();
+            const uri = "https://navedex-api.herokuapp.com/v1/navers";
         
             let h = new Headers();
             h.append("Accept", "application/json");
@@ -32,8 +32,8 @@ const NaversList = () => {
     }, []);
 
     const deleteNaver = async (id) => {
-        let token = getToken();
-        let uri = "https://navedex-api.herokuapp.com/v1/navers/" + id;
+        const token = getToken();
+        const uri = "https://navedex-api.herokuapp.com/v1/navers/" + id;
     
         let h = new Headers();
         h.append("Accept", "application/json");
@@ -62,11 +62,7 @@ const NaversList = () => {
                     <img src={iconExit} alt="sair" className="x-icon" 
                         onClick={() => {changeDisplay("modal-naver", "none")}}
                     />
-                    <img src={showNaver.url} alt="Foto" className="modal-photo" 
-                        onError={() => {
-                            document.getElementsByClassName("modal-photo")[0].src = hanSolo;
-                        }} 
-                    />
+                    <img src={showNaver.url} alt="Foto" className="modal-photo" />
                     <div className="modal-text">
                         <h3>{showNaver.name}</h3>
                         <p>{showNaver.job_role}</p>
@@ -119,11 +115,7 @@ const NaversList = () => {
                         <div style={{cursor: "pointer"}} onClick={() => {
                             setNaver(naver);
                             changeDisplay("modal-naver", "block")}}>
-                            <h3><img src={naver.url} alt="Foto" className="photo" 
-                                onError={() => {
-                                    document.getElementsByClassName("photo")[0].src = hanSolo;
-                                }}
-                            /></h3>
+                            <h3><img src={naver.url} alt="Foto" className="photo" /></h3>
                             <h4>{naver.name}</h4>
                             <p>{naver.job_role}</p>
                         </div>

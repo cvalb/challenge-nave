@@ -6,24 +6,24 @@ import iconBack from '../img/voltar.svg';
 import iconExit from '../img/sair.svg';
 
 const FormAdd = () => {
-    let [createdNaver, setCreatedNaver] = useState(false);
-    let [name, setName] = useState("");
-    let [birthdate, setBirthdate] = useState("");
-    let [jobRole, setJobRole] = useState("");
-    let [projects, setProjects] = useState("");
-    let [admission, setAdmission] = useState("");
-    let [photoUrl, setPhotoUrl] = useState("");
+    const [createdNaver, setCreatedNaver] = useState(false);
+    const [name, setName] = useState("");
+    const [birthdate, setBirthdate] = useState("");
+    const [jobRole, setJobRole] = useState("");
+    const [projects, setProjects] = useState("");
+    const [admission, setAdmission] = useState("");
+    const [photoUrl, setPhotoUrl] = useState("");
 
     if (createdNaver) {
         return <Redirect to="/navers" />;
     }
 
     const sendForm = async () => {
-        let token = getToken();
-        let uri = "https://navedex-api.herokuapp.com/v1/navers";
+        const token = getToken();
+        const uri = "https://navedex-api.herokuapp.com/v1/navers";
 
-        let admissionSend = requestDate(admission);
-        let birthdateSend = requestDate(birthdate);
+        const admissionSend = requestDate(admission);
+        const birthdateSend = requestDate(birthdate);
     
         let h = new Headers();
         h.append("Accept", "application/json");

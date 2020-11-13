@@ -7,21 +7,21 @@ import iconExit from '../img/sair.svg';
 
 
 const FormEdit = () => {
-    let naverId = useParams();
-    let [naver, setNaver] = useState("");
-    let [name, setName] = useState("");
-    let [birthdate, setBirthdate] = useState("");
-    let [jobRole, setJobRole] = useState("");
-    let [projects, setProjects] = useState("");
-    let [admission, setAdmission] = useState("");
-    let [photoUrl, setPhotoUrl] = useState("");
+    const naverId = useParams();
+    const [naver, setNaver] = useState("");
+    const [name, setName] = useState("");
+    const [birthdate, setBirthdate] = useState("");
+    const [jobRole, setJobRole] = useState("");
+    const [projects, setProjects] = useState("");
+    const [admission, setAdmission] = useState("");
+    const [photoUrl, setPhotoUrl] = useState("");
 
     useEffect(() => {
         const getNaver = async () => {
-            let token = getToken();
-            let uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
+            const token = getToken();
+            const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
         
-            let h = new Headers();
+            const h = new Headers();
             h.append("Accept", "application/json");
             h.append("Authorization", "Bearer " + token);
             
@@ -41,17 +41,17 @@ const FormEdit = () => {
     }, []);
 
     const sendForm = async () => {
-        let token = getToken();
-        let uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
+        const token = getToken();
+        const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
 
-        let admissionSend = requestDate(admission);
-        let birthdateSend = requestDate(birthdate);
+        const admissionSend = requestDate(admission);
+        const birthdateSend = requestDate(birthdate);
     
-        let h = new Headers();
+        const h = new Headers();
         h.append("Accept", "application/json");
         h.append("Authorization", "Bearer " + token);
 
-        let requestBody = new FormData();
+        const requestBody = new FormData();
         requestBody.append("job_role", jobRole);
         requestBody.append("admission_date", admissionSend);
         requestBody.append("birthdate", birthdateSend);
