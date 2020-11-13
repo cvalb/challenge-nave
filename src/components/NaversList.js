@@ -29,7 +29,7 @@ const NaversList = () => {
         }
 
         getNavers();
-    }, []);
+    });
 
     const deleteNaver = async (id) => {
         const token = getToken();

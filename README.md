@@ -4,8 +4,7 @@ Read this in other language: [English](https://github.com/cvalb/challenge-nave/b
 
 ## Description
 
-This project is a challenge created by [nave.rs](https://nave.rs/).
-This is also my first project using React and Sass.
+This project is a challenge created by [nave.rs](https://nave.rs/). This is also my first project using React and Sass.
 
 ## Instalation
 
