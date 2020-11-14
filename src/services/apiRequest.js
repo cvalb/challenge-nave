@@ -1,170 +1,172 @@
+import { getToken } from '../services/auth';
 
 //Login 
-const apiRequest = async (requestType, requestObject) => {
-    let uri = "https://navedex-api.herokuapp.com/v1/";
+export const apiRequest = async (requestType, requestObject) => {
+    const requestBody = new FormData();
+    const token = getToken();
+
+    let uri = "https://navedex-api.herokuapp.com/v1/";    
     let requestMethod;
     let request;
+    let jsonHttp;
 
-    const h = new Headers();
-    h.append("Accept", "application/json");
+    const requestHeader = new Headers();
+    requestHeader.append("Accept", "application/json");
 
-    if(requestType === "login"){
-        requestMethod = "POST";
+    switch (requestType){
+        case "login":
+            requestMethod = "POST";
+            uri = uri + "users/login";
 
-        const email = String(requestObject.email);
-        const password = String(requestObject.password);
+            requestBody.append("email", requestObject.email);
+            requestBody.append("password", requestObject.password);
 
-        const requestBody = new FormData();
-        requestBody.append("email", email);
-        requestBody.append("password", password);
-        uri = uri + "users/login";
+            jsonHttp = {
+                method: requestMethod,
+                headers: requestHeader,
+                body: requestBody
+            };
 
-        jsonHttp = {
-            method: 
-        };
-    }
+            break;
+
+        case "add" || "edit":
+        /* I don't think this would be the best practice, but it's legible and concise.
+            Accepting suggestions */
+            switch(requestType){
+                case "add":
+                    requestMethod = "POST";
+                    uri = uri + "navers";
+                    break;
+
+                case "edit":
+                    requestMethod = "PUT";
+                    uri = uri + "navers/" + requestObject.id;
+                    break;
+
+                default: 
+                    return;
+            }
+
+            requestHeader.append("Authorization", "Bearer " + token);
+
+            requestBody.append("job_role", requestObject.jobRole);
+            requestBody.append("admission_date", requestObject.admission);
+            requestBody.append("birthdate", requestObject.birthdate);
+            requestBody.append("name", requestObject.name);
+            requestBody.append("project", requestObject.projects);
+            requestBody.append("url", requestObject.photoUrl);
+            
+            jsonHttp = {
+                method: requestMethod,
+                headers: requestHeader,
+                body: requestBody
+            };
+            break;
+
+        case "delete":
+            requestMethod = "DELETE";
+            uri = uri + "navers/" + requestObject.id;
+
+            requestHeader.append("Authorization", "Bearer " + token);
+
+            jsonHttp = {
+                method: requestMethod,
+                headers: requestHeader
+            };
+
+            break;
+
+        case "list":
+                requestMethod = "GET";
+                uri = uri + "navers";
     
+                requestHeader.append("Authorization", "Bearer " + token);
+                
+                jsonHttp = {
+                    method: requestMethod,
+                    headers: requestHeader
+                };
+    
+                break;
+
+        case "show":
+            requestMethod = "GET";
+            uri = uri + "navers/" + requestObject.id;
+
+            requestHeader.append("Authorization", "Bearer " + token);
+            
+            jsonHttp = {
+                method: requestMethod,
+                headers: requestHeader
+            };
+
+            break;
+
+        default: 
+
+            return;
+    }
+
     request = new Request(uri, jsonHttp);
 
     const response = await fetch(request);
     const json = await response.json();
 
     return json;
-    
-/*    if(json.errorCode){
-        changeDisplay("modal-error", "block");
-        setLogin(false);
-    } else {
-        authenticate(json.token);
-        setLogin(true);
-    }*/
 }
+
+/*
 
 //FormAdd
 const sendForm1 = async () => {
-    const token = getToken();
-    const uri = "https://navedex-api.herokuapp.com/v1/navers";
 
     const admissionSend = requestDate(admission);
     const birthdateSend = requestDate(birthdate);
 
-    let h = new Headers();
-    h.append("Accept", "application/json");
-    h.append("Authorization", "Bearer " + token);
-
-    let requestBody = new FormData();
-    requestBody.append("job_role", jobRole);
-    requestBody.append("admission_date", admissionSend);
-    requestBody.append("birthdate", birthdateSend);
-    requestBody.append("name", name);
-    requestBody.append("project", projects);
-    requestBody.append("url", photoUrl);
+    Object.append({birthdate: birthdateSend, admission: admissionSend});
     
-    const response = await fetch(uri, {method: "POST", headers: h, body: requestBody});
-    const json = await response.json();
+    const addedNaver = await apiRequest("add");
 
-    return json;
-
-/*    if(json.id){
+    if(addedNaver.id){
         changeDisplay("modal-create", "block");
     } else {
         changeDisplay("modal-error", "block");
-    }*/
+    }
 }
 
 //FormEdit
-useEffect(() => {
+useEffect(async () => {
     const getNaver = async () => {
-        const token = getToken();
-        const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
-    
-        const h = new Headers();
-        h.append("Accept", "application/json");
-        h.append("Authorization", "Bearer " + token);
-        
-        const response = await fetch(uri, {method: "GET", headers: h});
-        const json = await response.json();
 
-        setNaver(json);
-        setName(json.name);
-        setBirthdate(handleDate(json.birthdate));
-        setJobRole(json.job_role);
-        setProjects(json.project);
-        setAdmission(handleDate(json.admission_date));
-        setPhotoUrl(json.url);
+        const editedNaver = await apiRequest("get");
+
+        setNaver(editedNaver);
+        setName(editedNaver.name);
+        setBirthdate(handleDate(editedNaver.birthdate));
+        setJobRole(editedNaver.job_role);
+        setProjects(editedNaver.project);
+        setAdmission(handleDate(editedNaver.admission_date));
+        setPhotoUrl(editedNaver.url);
     }
 
     getNaver();
 }, []);
 
 const sendForm2 = async () => {
-    const token = getToken();
-    const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
 
     const admissionSend = requestDate(admission);
     const birthdateSend = requestDate(birthdate);
 
-    let h = new Headers();
-    h.append("Accept", "application/json");
-    h.append("Authorization", "Bearer " + token);
+    Object.append({birthdate: birthdateSend, admission: admissionSend});
 
-    let requestBody = new FormData();
-    requestBody.append("job_role", jobRole);
-    requestBody.append("admission_date", admissionSend);
-    requestBody.append("birthdate", birthdateSend);
-    requestBody.append("name", name);
-    requestBody.append("project", projects);
-    requestBody.append("url", photoUrl);
-    
-    const response = await fetch(uri, {method: "PUT", headers: h, body: requestBody});
-    const json = await response.json();
+    const editedNaver = await apiRequest("edit");
 
-/*    if(json.id){
+
+    if(editedNaver.id){
         changeDisplay("modal-edit", "block");
     } else {
         changeDisplay("modal-error", "block");
-    }*/
-}
-
-//NaversList
-useEffect(() => {
-    const getNavers = async () => {
-        const token = getToken();
-        const uri = "https://navedex-api.herokuapp.com/v1/navers";
-    
-        let h = new Headers();
-        h.append("Accept", "application/json");
-        h.append("Authorization", "Bearer " + token);
-        
-        const response = await fetch(uri, {method: "GET", headers: h});
-        const json = await response.json();
-
-        setArrayNavers(json);
-    }
-
-    getNavers();
-}, [showNaver]);
-
-const deleteNaver = async (id) => {
-    const token = getToken();
-    const uri = "https://navedex-api.herokuapp.com/v1/navers/" + id;
-
-    let h = new Headers();
-    h.append("Accept", "application/json");
-    h.append("Authorization", "Bearer " + token);
-
-    const response = await fetch(uri, {method: "DELETE", headers: h});
-
-    const json = await response.json();
-
-    console.log(json);
-
-    changeDisplay("modal-confirm", "none");
-
-    if(json.deleted){
-        changeDisplay("modal-delete", "block");
-        setNaver(new Naver());
-    } else {
-        changeDisplay("modal-error", "block");
     }
 }
+
+*/

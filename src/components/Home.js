@@ -30,7 +30,9 @@ const Home = () => {
                 <Route path="/navers/editar/:id">
                     <FormEdit/>
                 </Route>
-                <Route path="/navers/*" render={() => <h1>Page not found</h1>} />
+                <Route path="/navers/*">
+                    <h1>Page not found</h1>
+                </Route>
             </Switch>
         </Fragment>
     );

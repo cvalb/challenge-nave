@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { changeDisplay, calcYears } from '../services/functions';
 import { getToken } from '../services/auth';
+import { apiRequest } from '../services/apiRequest';
 import Naver from './object/Naver';
 import iconDelete from '../img/excluir.svg';
 import iconEdit from '../img/editar.svg';
@@ -14,40 +15,25 @@ const NaversList = () => {
     const [arrayNavers, setArrayNavers] = useState("");
 
     useEffect(() => {
-        const getNavers = async () => {
-            const token = getToken();
-            const uri = "https://navedex-api.herokuapp.com/v1/navers";
-        
-            let h = new Headers();
-            h.append("Accept", "application/json");
-            h.append("Authorization", "Bearer " + token);
-            
-            const response = await fetch(uri, {method: "GET", headers: h});
-            const json = await response.json();
-
-            setArrayNavers(json);
+        const listNavers = async () => {
+    
+            const getNavers = await apiRequest("list");
+    
+            setArrayNavers(getNavers);
         }
-
-        getNavers();
+    
+        listNavers();
     }, [showNaver]);
 
-    const deleteNaver = async (id) => {
-        const token = getToken();
-        const uri = "https://navedex-api.herokuapp.com/v1/navers/" + id;
+    const deleteNaver = async (naverId) => {
     
-        let h = new Headers();
-        h.append("Accept", "application/json");
-        h.append("Authorization", "Bearer " + token);
-
-        const response = await fetch(uri, {method: "DELETE", headers: h});
-
-        const json = await response.json();
-
-        console.log(json);
-
+        const deletedNaverId = {id: naverId};
+    
+        const deleted = await apiRequest("delete", deletedNaverId);
+    
         changeDisplay("modal-confirm", "none");
-
-        if(json.deleted){
+    
+        if(deleted.deleted){
             changeDisplay("modal-delete", "block");
             setNaver(new Naver());
         } else {

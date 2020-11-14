@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from "react-router-dom";
 import { changeDisplay } from '../services/functions';
 import { authenticate, isAuthenticated } from '../services/auth';
+import { apiRequest } from '../services/apiRequest';
 import logotipo from '../img/logo.svg';
 import iconExit from '../img/sair.svg';
 
@@ -15,25 +16,31 @@ const Login = () => {
     }
 
     const sendForm = async (formEmail, formPassword) => {
+
         const email = String(formEmail);
         const password = String(formPassword);
-        const uri = "https://navedex-api.herokuapp.com/v1/users/login";
-      
-        const h = new Headers();
-        h.append("Accept", "application/json");
+
+        if (email === "" || password === ""){
+            changeDisplay("modal-error", "block");
+            return;
+        }
         
-        const requestBody = new FormData();
-        requestBody.append("email", email);
-        requestBody.append("password", password);
+        // https://www.w3resource.com/javascript/form/email-validation.php
+        if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))
+        {
+            changeDisplay("modal-error", "block");
+            return;
+        }
+    
+        const credentials = {email: email, password: password};
         
-        const response = await fetch(uri, {method: "POST", headers: h, body: requestBody});
-        const json = await response.json();
-        
-        if(json.errorCode){
+        const loginNaver = await apiRequest("login", credentials);
+    
+        if(loginNaver.errorCode){
             changeDisplay("modal-error", "block");
             setLogin(false);
         } else {
-            authenticate(json.token);
+            authenticate(loginNaver.token);
             setLogin(true);
         }
     }
