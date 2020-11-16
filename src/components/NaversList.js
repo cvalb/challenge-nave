@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { changeDisplay, calcYears } from '../services/functions';
-import { getToken } from '../services/auth';
 import { apiRequest } from '../services/apiRequest';
 import Naver from './object/Naver';
 import iconDelete from '../img/excluir.svg';

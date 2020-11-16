@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { changeDisplay, requestDate } from '../services/functions';
+import { apiRequest } from '../services/apiRequest';
 import { getToken } from '../services/auth';
+import Naver from './object/Naver';
 import iconBack from '../img/voltar.svg';
 import iconExit from '../img/sair.svg';
 
@@ -19,28 +21,14 @@ const FormAdd = () => {
     }
 
     const sendForm = async () => {
-        const token = getToken();
-        const uri = "https://navedex-api.herokuapp.com/v1/navers";
-
         const admissionSend = requestDate(admission);
         const birthdateSend = requestDate(birthdate);
-    
-        let h = new Headers();
-        h.append("Accept", "application/json");
-        h.append("Authorization", "Bearer " + token);
 
-        let requestBody = new FormData();
-        requestBody.append("job_role", jobRole);
-        requestBody.append("admission_date", admissionSend);
-        requestBody.append("birthdate", birthdateSend);
-        requestBody.append("name", name);
-        requestBody.append("project", projects);
-        requestBody.append("url", photoUrl);
+        let requestObject = new Naver(0, name, jobRole, birthdateSend, admissionSend, projects, photoUrl);
         
-        const response = await fetch(uri, {method: "POST", headers: h, body: requestBody});
-        const json = await response.json();
+        const addedNaver = await apiRequest("add", requestObject);
 
-        if(json.id){
+        if(addedNaver.id){
             changeDisplay("modal-create", "block");
         } else {
             changeDisplay("modal-error", "block");

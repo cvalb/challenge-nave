@@ -1,6 +1,5 @@
 import { getToken } from '../services/auth';
 
-//Login 
 export const apiRequest = async (requestType, requestObject) => {
     const requestBody = new FormData();
     const token = getToken();
@@ -29,32 +28,18 @@ export const apiRequest = async (requestType, requestObject) => {
 
             break;
 
-        case "add" || "edit":
-        /* I don't think this would be the best practice, but it's legible and concise.
-            Accepting suggestions */
-            switch(requestType){
-                case "add":
-                    requestMethod = "POST";
-                    uri = uri + "navers";
-                    break;
-
-                case "edit":
-                    requestMethod = "PUT";
-                    uri = uri + "navers/" + requestObject.id;
-                    break;
-
-                default: 
-                    return;
-            }
+        case "add":
+            requestMethod = "POST";
+            uri = uri + "navers";
 
             requestHeader.append("Authorization", "Bearer " + token);
 
-            requestBody.append("job_role", requestObject.jobRole);
-            requestBody.append("admission_date", requestObject.admission);
+            requestBody.append("job_role", requestObject.job_role);
+            requestBody.append("admission_date", requestObject.admission_date);
             requestBody.append("birthdate", requestObject.birthdate);
             requestBody.append("name", requestObject.name);
-            requestBody.append("project", requestObject.projects);
-            requestBody.append("url", requestObject.photoUrl);
+            requestBody.append("project", requestObject.project);
+            requestBody.append("url", requestObject.url);
             
             jsonHttp = {
                 method: requestMethod,
@@ -63,6 +48,26 @@ export const apiRequest = async (requestType, requestObject) => {
             };
             break;
 
+        case "edit":
+            requestMethod = "PUT";
+            uri = uri + "navers/" + requestObject.id;
+        
+            requestHeader.append("Authorization", "Bearer " + token);
+
+            requestBody.append("job_role", requestObject.job_role);
+            requestBody.append("admission_date", requestObject.admission_date);
+            requestBody.append("birthdate", requestObject.birthdate);
+            requestBody.append("name", requestObject.name);
+            requestBody.append("project", requestObject.project);
+            requestBody.append("url", requestObject.url);
+            
+            jsonHttp = {
+                method: requestMethod,
+                headers: requestHeader,
+                body: requestBody
+            };
+            break;
+            
         case "delete":
             requestMethod = "DELETE";
             uri = uri + "navers/" + requestObject.id;
@@ -114,59 +119,3 @@ export const apiRequest = async (requestType, requestObject) => {
 
     return json;
 }
-
-/*
-
-//FormAdd
-const sendForm1 = async () => {
-
-    const admissionSend = requestDate(admission);
-    const birthdateSend = requestDate(birthdate);
-
-    Object.append({birthdate: birthdateSend, admission: admissionSend});
-    
-    const addedNaver = await apiRequest("add");
-
-    if(addedNaver.id){
-        changeDisplay("modal-create", "block");
-    } else {
-        changeDisplay("modal-error", "block");
-    }
-}
-
-//FormEdit
-useEffect(async () => {
-    const getNaver = async () => {
-
-        const editedNaver = await apiRequest("get");
-
-        setNaver(editedNaver);
-        setName(editedNaver.name);
-        setBirthdate(handleDate(editedNaver.birthdate));
-        setJobRole(editedNaver.job_role);
-        setProjects(editedNaver.project);
-        setAdmission(handleDate(editedNaver.admission_date));
-        setPhotoUrl(editedNaver.url);
-    }
-
-    getNaver();
-}, []);
-
-const sendForm2 = async () => {
-
-    const admissionSend = requestDate(admission);
-    const birthdateSend = requestDate(birthdate);
-
-    Object.append({birthdate: birthdateSend, admission: admissionSend});
-
-    const editedNaver = await apiRequest("edit");
-
-
-    if(editedNaver.id){
-        changeDisplay("modal-edit", "block");
-    } else {
-        changeDisplay("modal-error", "block");
-    }
-}
-
-*/

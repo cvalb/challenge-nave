@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { changeDisplay, handleDate, requestDate } from '../services/functions';
+import Naver from './object/Naver';
 import { getToken } from '../services/auth';
+import { apiRequest } from '../services/apiRequest';
 import iconBack from '../img/voltar.svg';
 import iconExit from '../img/sair.svg';
 
@@ -18,53 +20,33 @@ const FormEdit = () => {
 
     useEffect(() => {
         const getNaver = async () => {
-            const token = getToken();
-            const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
-        
-            const h = new Headers();
-            h.append("Accept", "application/json");
-            h.append("Authorization", "Bearer " + token);
-            
-            const response = await fetch(uri, {method: "GET", headers: h});
-            const json = await response.json();
-
-            setNaver(json);
-            setName(json.name);
-            setBirthdate(handleDate(json.birthdate));
-            setJobRole(json.job_role);
-            setProjects(json.project);
-            setAdmission(handleDate(json.admission_date));
-            setPhotoUrl(json.url);
+            const editedNaver = await apiRequest("show", naverId);
+    
+            setNaver(editedNaver);
+            setName(editedNaver.name);
+            setBirthdate(handleDate(editedNaver.birthdate));
+            setJobRole(editedNaver.job_role);
+            setProjects(editedNaver.project);
+            setAdmission(handleDate(editedNaver.admission_date));
+            setPhotoUrl(editedNaver.url);
         }
-
+    
         getNaver();
-    }, []);
+    }, [naverId]);
 
     const sendForm = async () => {
-        const token = getToken();
-        const uri = "https://navedex-api.herokuapp.com/v1/navers/" + naverId.id;
-
         const admissionSend = requestDate(admission);
         const birthdateSend = requestDate(birthdate);
-    
-        let h = new Headers();
-        h.append("Accept", "application/json");
-        h.append("Authorization", "Bearer " + token);
 
-        let requestBody = new FormData();
-        requestBody.append("job_role", jobRole);
-        requestBody.append("admission_date", admissionSend);
-        requestBody.append("birthdate", birthdateSend);
-        requestBody.append("name", name);
-        requestBody.append("project", projects);
-        requestBody.append("url", photoUrl);
-        
-        const response = await fetch(uri, {method: "PUT", headers: h, body: requestBody});
-        const json = await response.json();
+        const id = naverId.id;
 
-        if(json.id){
+        let requestObject = new Naver(id , name, jobRole, birthdateSend, admissionSend, projects, photoUrl);
+
+        const editedNaver = await apiRequest("edit", requestObject);
+
+        if(editedNaver.id){
             changeDisplay("modal-edit", "block");
-        } else {
+            } else {
             changeDisplay("modal-error", "block");
         }
     }
