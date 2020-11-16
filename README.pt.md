@@ -33,3 +33,6 @@ Completamente funcional.
 - 12/11/2020
   - A lista está recarregando agora que arrumei o hook useEffect em NaversList.js;
   - Refatorei as variáveis das funções;
+
+- 15/11/2020
+  - Refactoração das requisições de API;

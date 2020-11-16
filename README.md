@@ -33,3 +33,6 @@ Fully functional.
 - 12/11/2020
   - List now reloading after deleting an employee by adjusting useEffect;
   - Refactor functions variables;
+
+- 15/11/2020
+  - Refactor API requests;
