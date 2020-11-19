@@ -34,7 +34,7 @@ const Login = () => {
     
         const credentials = {email: email, password: password};
         
-        const loginNaver = await apiRequest("login", credentials);
+        const loginNaver = await apiRequest("login", false, credentials);
     
         if(loginNaver.errorCode){
             changeDisplay("modal-error", "block");

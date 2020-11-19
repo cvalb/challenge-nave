@@ -1,115 +1,77 @@
 import { getToken } from '../services/auth';
 
-export const apiRequest = async (requestType, requestObject) => {
-    const requestBody = new FormData();
+export const apiRequest = async (requestType, needAuthentication, requestObject) => {
     const token = getToken();
 
     let uri = "https://navedex-api.herokuapp.com/v1/";    
     let requestMethod;
+    let requestBody;
     let request;
     let jsonHttp;
 
     const requestHeader = new Headers();
     requestHeader.append("Accept", "application/json");
 
+    if(needAuthentication){
+        requestHeader.append("Authorization", "Bearer " + token);
+    }
+
+    // Build the request information based on the type of request
+    // I'm not sure if it's the best way of doing it, but it concentrates the API requests in one place.
     switch (requestType){
         case "login":
             requestMethod = "POST";
             uri = uri + "users/login";
 
-            requestBody.append("email", requestObject.email);
-            requestBody.append("password", requestObject.password);
+            requestBody = bodyBuilder("login", requestObject);
 
-            jsonHttp = {
-                method: requestMethod,
-                headers: requestHeader,
-                body: requestBody
-            };
-
-            break;
+        break;
 
         case "add":
             requestMethod = "POST";
             uri = uri + "navers";
 
-            requestHeader.append("Authorization", "Bearer " + token);
-
-            requestBody.append("job_role", requestObject.job_role);
-            requestBody.append("admission_date", requestObject.admission_date);
-            requestBody.append("birthdate", requestObject.birthdate);
-            requestBody.append("name", requestObject.name);
-            requestBody.append("project", requestObject.project);
-            requestBody.append("url", requestObject.url);
+            requestBody = bodyBuilder("naver", requestObject);
             
-            jsonHttp = {
-                method: requestMethod,
-                headers: requestHeader,
-                body: requestBody
-            };
-            break;
+        break;
 
         case "edit":
             requestMethod = "PUT";
             uri = uri + "navers/" + requestObject.id;
-        
-            requestHeader.append("Authorization", "Bearer " + token);
 
-            requestBody.append("job_role", requestObject.job_role);
-            requestBody.append("admission_date", requestObject.admission_date);
-            requestBody.append("birthdate", requestObject.birthdate);
-            requestBody.append("name", requestObject.name);
-            requestBody.append("project", requestObject.project);
-            requestBody.append("url", requestObject.url);
-            
-            jsonHttp = {
-                method: requestMethod,
-                headers: requestHeader,
-                body: requestBody
-            };
-            break;
+            requestBody = bodyBuilder("naver", requestObject);
+        
+        break;
             
         case "delete":
             requestMethod = "DELETE";
             uri = uri + "navers/" + requestObject.id;
 
-            requestHeader.append("Authorization", "Bearer " + token);
-
-            jsonHttp = {
-                method: requestMethod,
-                headers: requestHeader
-            };
-
-            break;
+        break;
 
         case "list":
-                requestMethod = "GET";
-                uri = uri + "navers";
+            requestMethod = "GET";
+            uri = uri + "navers";
     
-                requestHeader.append("Authorization", "Bearer " + token);
-                
-                jsonHttp = {
-                    method: requestMethod,
-                    headers: requestHeader
-                };
-    
-                break;
+        break;
 
         case "show":
             requestMethod = "GET";
             uri = uri + "navers/" + requestObject.id;
 
-            requestHeader.append("Authorization", "Bearer " + token);
-            
-            jsonHttp = {
-                method: requestMethod,
-                headers: requestHeader
-            };
-
-            break;
+        break;
 
         default: 
+            throw new Error("Assign a valid requestType to the apiRequest function");
+    }
 
-            return;
+    jsonHttp = {
+        method: requestMethod,
+        headers: requestHeader
+    };
+
+    if(typeof requestBody !== "undefined"){
+        jsonHttp = Object.assign({body: requestBody}, jsonHttp);  
     }
 
     request = new Request(uri, jsonHttp);
@@ -118,4 +80,29 @@ export const apiRequest = async (requestType, requestObject) => {
     const json = await response.json();
 
     return json;
+}
+
+// Yup... it builds the request body...
+function bodyBuilder(type, object) {
+    const requestBody = new FormData();
+    switch(type){
+        case "login":
+            requestBody.append("email", object.email);
+            requestBody.append("password", object.password);
+
+            return requestBody;
+
+        case "naver":
+            requestBody.append("job_role", object.job_role);
+            requestBody.append("admission_date", object.admission_date);
+            requestBody.append("birthdate", object.birthdate);
+            requestBody.append("name", object.name);
+            requestBody.append("project", object.project);
+            requestBody.append("url", object.url);
+
+            return requestBody;
+
+        default:
+            throw new Error("This is awkward...");
+    }
 }

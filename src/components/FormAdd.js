@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { changeDisplay, requestDate } from '../services/functions';
 import { apiRequest } from '../services/apiRequest';
-import { getToken } from '../services/auth';
 import Naver from './object/Naver';
 import iconBack from '../img/voltar.svg';
 import iconExit from '../img/sair.svg';
@@ -26,7 +25,7 @@ const FormAdd = () => {
 
         let requestObject = new Naver(0, name, jobRole, birthdateSend, admissionSend, projects, photoUrl);
         
-        const addedNaver = await apiRequest("add", requestObject);
+        const addedNaver = await apiRequest("add", true, requestObject);
 
         if(addedNaver.id){
             changeDisplay("modal-create", "block");

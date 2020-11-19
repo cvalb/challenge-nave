@@ -6,7 +6,7 @@ import Naver from './object/Naver';
 import iconDelete from '../img/excluir.svg';
 import iconEdit from '../img/editar.svg';
 import iconExit from '../img/sair.svg';
-import hanSolo from '../img/wide.jpg'; // !!!!
+//import hanSolo from '../img/wide.jpg';
 
 
 const NaversList = () => {
@@ -16,7 +16,7 @@ const NaversList = () => {
     useEffect(() => {
         const listNavers = async () => {
     
-            const getNavers = await apiRequest("list");
+            const getNavers = await apiRequest("list", true);
     
             setArrayNavers(getNavers);
         }
@@ -28,7 +28,7 @@ const NaversList = () => {
     
         const deletedNaverId = {id: naverId};
     
-        const deleted = await apiRequest("delete", deletedNaverId);
+        const deleted = await apiRequest("delete", true, deletedNaverId);
     
         changeDisplay("modal-confirm", "none");
     

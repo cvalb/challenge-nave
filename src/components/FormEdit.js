@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { changeDisplay, handleDate, requestDate } from '../services/functions';
 import Naver from './object/Naver';
-import { getToken } from '../services/auth';
 import { apiRequest } from '../services/apiRequest';
 import iconBack from '../img/voltar.svg';
 import iconExit from '../img/sair.svg';
@@ -20,7 +19,7 @@ const FormEdit = () => {
 
     useEffect(() => {
         const getNaver = async () => {
-            const editedNaver = await apiRequest("show", naverId);
+            const editedNaver = await apiRequest("show", true, naverId);
     
             setNaver(editedNaver);
             setName(editedNaver.name);
@@ -42,7 +41,7 @@ const FormEdit = () => {
 
         let requestObject = new Naver(id , name, jobRole, birthdateSend, admissionSend, projects, photoUrl);
 
-        const editedNaver = await apiRequest("edit", requestObject);
+        const editedNaver = await apiRequest("edit", true, requestObject);
 
         if(editedNaver.id){
             changeDisplay("modal-edit", "block");
